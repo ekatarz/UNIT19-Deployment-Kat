@@ -124,7 +124,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="MPList.aspx" />
+    <Content Include="MPList.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -212,7 +212,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MPList.aspx.cs">
-      <DependentUpon>MPList.aspx</DependentUpon>
+      <DependentUpon>MPList.html</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MPList.aspx.cs.cs">
@@ -222,7 +222,7 @@
       <DependentUpon>MPList.aspx.cs.cs</DependentUpon>
     </Compile>
     <Compile Include="MPList.aspx.designer.cs">
-      <DependentUpon>MPList.aspx</DependentUpon>
+      <DependentUpon>MPList.html</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">

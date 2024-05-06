@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of MPs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            color: #666;
+            text-align: center;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #txtSearch {
+            padding: 8px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        #btnSearch {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #btnSearch:hover {
+            background-color: #0056b3;
+        }
+
+        #gvMPList {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #gvMPList th, #gvMPList td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #gvMPList th {
+            background-color: #f2f2f2;
+        }
+
+        #gvMPList th:first-child,
+        #gvMPList td:first-child {
+            border-left: none;
+        }
+
+        #gvMPList th:last-child,
+        #gvMPList td:last-child {
+            border-right: none;
+        }
+
+        #gvMPList tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        #gvMPList a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        #gvMPList a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of MPs</h1>
+    <p>This app displays a list of Members of Parliament derived from <a href="https://www.theyworkforyou.com/">www.theyworkforyou.com</a>.</p>
+    <p>The app has been developed for the purpose of the assignment for Unit 19, by Katarzyna Kuracinska.</p>
+    <div class="search-container">
+        <!-- Add a TextBox for search input -->
+        <input type="text" id="txtSearch" placeholder="Search MP...">
+        <!-- Add a Button for search -->
+        <button id="btnSearch">Search</button>
+    </div>
+    <!-- GridView to display MPs -->
+    <table id="gvMPList">
+        <thead>
+            <tr>
+                <th>Person ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Party</th>
+                <th>Constituency</th>
+                <th>URI</th>
+            </tr>
+        </thead>
+        <tbody id="mpListBody">
+            <!-- MPs will be dynamically added here -->
+        </tbody>
+    </table>
+ <script>
+        // Your JavaScript code here to populate the grid
+        document.addEventListener('DOMContentLoaded', function () {
+            var data = [
+                 { PersonID: 10001, FirstName: "Diane", LastName: "Abbott", Party: "Independent", Constituency: "Hackney North and Stoke Newington", URI: "https://www.theyworkforyou.com/mp/10001/diane_abbott/hackney_north_and_stoke_newington" },
+            { PersonID: 25034, FirstName: "Debbie", LastName: "Abrahams", Party: "Labour", Constituency: "Oldham East and Saddleworth", URI: "https://www.theyworkforyou.com/mp/25034/debbie_abrahams/oldham_east_and_saddleworth" },
+            { PersonID: 25661, FirstName: "Bim", LastName: "Afolami", Party: "Conservative", Constituency: "Hitchin and Harpenden", URI: "https://www.theyworkforyou.com/mp/25661/bim_afolami/hitchin_and_harpenden" },
+            { PersonID: 11929, FirstName: "Adam", LastName: "Afriyie", Party: "Conservative", Constituency: "Windsor", URI: "https://www.theyworkforyou.com/mp/11929/adam_afriyie/windsor" },
+            { PersonID: 25817, FirstName: "Nickie", LastName: "Aiken", Party: "Conservative", Constituency: "Cities of London and Westminster", URI: "https://www.theyworkforyou.com/mp/25817/nickie_aiken/cities_of_london_and_westminster" },
+            { PersonID: 24904, FirstName: "Peter", LastName: "Aldous", Party: "Conservative", Constituency: "Waveney", URI: "https://www.theyworkforyou.com/mp/24904/peter_aldous/waveney" },
+            { PersonID: 24958, FirstName: "Rushanara", LastName: "Ali", Party: "Labour", Constituency: "Bethnal Green and Bow", URI: "https://www.theyworkforyou.com/mp/24958/rushanara_ali/bethnal_green_and_bow" },
+            { PersonID: 25888, FirstName: "Tahir", LastName: "Ali", Party: "Labour", Constituency: "Birmingham, Hall Green", URI: "https://www.theyworkforyou.com/mp/25888/tahir_ali/birmingham%2C_hall_green" },
+            { PersonID: 25337, FirstName: "Lucy", LastName: "Allan", Party: "Conservative", Constituency: "Telford", URI: "https://www.theyworkforyou.com/mp/25337/lucy_allan/telford" },
+            { PersonID: 25579, FirstName: "Rosena", LastName: "Allin-Khan", Party: "Labour", Constituency: "Tooting", URI: "https://www.theyworkforyou.com/mp/25579/rosena_allin-khan/tooting" },
+            { PersonID: 25702, FirstName: "Mike", LastName: "Amesbury", Party: "Labour", Constituency: "Weaver Vale", URI: "https://www.theyworkforyou.com/mp/25702/mike_amesbury/weaver_vale" },
+            { PersonID: 25813, FirstName: "Fleur", LastName: "Anderson", Party: "Labour", Constituency: "Putney", URI: "https://www.theyworkforyou.com/mp/25813/fleur_anderson/putney" },
+            { PersonID: 25894, FirstName: "Lee", LastName: "Anderson", Party: "Conservative", Constituency: "Ashfield", URI: "https://www.theyworkforyou.com/mp/25894/lee_anderson/ashfield" },
+            { PersonID: 25818, FirstName: "Stuart", LastName: "Anderson", Party: "Conservative", Constituency: "Wolverhampton South West", URI: "https://www.theyworkforyou.com/mp/25818/stuart_anderson/wolverhampton_south_west" },
+            { PersonID: 24864, FirstName: "Stuart", LastName: "Andrew", Party: "Conservative", Constituency: "Pudsey", URI: "https://www.theyworkforyou.com/mp/24864/stuart_andrew/pudsey" },
+            { PersonID: 25335, FirstName: "Caroline", LastName: "Ansell", Party: "Conservative", Constituency: "Eastbourne", URI: "https://www.theyworkforyou.com/mp/25335/caroline_ansell/eastbourne" },
+            { PersonID: 25634, FirstName: "Tonia", LastName: "Antoniazzi", Party: "Labour", Constituency: "Gower", URI: "https://www.theyworkforyou.com/mp/25634/tonia_antoniazzi/gower" },
+            { PersonID: 25396, FirstName: "Edward", LastName: "Argar", Party: "Conservative", Constituency: "Charnwood", URI: "https://www.theyworkforyou.com/mp/25396/edward_argar/charnwood" },
+            { PersonID: 25120, FirstName: "Jon", LastName: "Ashworth", Party: "Labour", Constituency: "Leicester South", URI: "https://www.theyworkforyou.com/mp/25120/jon_ashworth/leicester_south" },
+            { PersonID: 25810, FirstName: "Sarah", LastName: "Atherton", Party: "Conservative", Constituency: "Wrexham", URI: "https://www.theyworkforyou.com/mp/25810/sarah_atherton/wrexham" },
+            { PersonID: 25424, FirstName: "Victoria", LastName: "Atkins", Party: "Conservative", Constituency: "Louth and Horncastle", URI: "https://www.theyworkforyou.com/mp/25424/victoria_atkins/louth_and_horncastle" },
+            { PersonID: 25750, FirstName: "Gareth", LastName: "Bacon", Party: "Conservative", Constituency: "Orpington", URI: "https://www.theyworkforyou.com/mp/25750/gareth_bacon/orpington" },
+            { PersonID: 10707, FirstName: "Richard", LastName: "Bacon", Party: "Conservative", Constituency: "South Norfolk", URI: "https://www.theyworkforyou.com/mp/10707/richard_bacon/south_norfolk" },
+            { PersonID: 25693, FirstName: "Kemi", LastName: "Badenoch", Party: "Conservative", Constituency: "Saffron Walden", URI: "https://www.theyworkforyou.com/mp/25693/kemi_badenoch/saffron_walden" },
+            ];
+
+            function populateGrid() {
+                var mpListBody = document.getElementById('mpListBody');
+                mpListBody.innerHTML = ''; // Clear previous data
+
+                data.forEach(function (mp) {
+                    var row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${mp.PersonID}</td>
+                        <td>${mp.FirstName}</td>
+                        <td>${mp.LastName}</td>
+                        <td>${mp.Party}</td>
+                        <td>${mp.Constituency}</td>
+                        <td><a href="${mp.URI}" target="_blank">Link</a></td>
+                    `;
+                    mpListBody.appendChild(row);
+                });
+            }
+
+            populateGrid(); // Populate the grid on page load
+
+            // If you have search functionality, add event listeners and update data accordingly
+            var btnSearch = document.getElementById('btnSearch');
+            btnSearch.addEventListener('click', function () {
+                // Add search functionality here
+            });
+        });
+    </script>
+</body>
+</html>
